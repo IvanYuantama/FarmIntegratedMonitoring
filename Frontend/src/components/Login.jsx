@@ -45,7 +45,8 @@ const Login = () => {
 
         {/* Logo */}
         <div className="flex justify-center mb-6">
-          <img src="https://ibb.co.com/zr4SP3j" alt="Logo FIM" className="w-32 h-32" />
+          <a href="https://ibb.co.com/zr4SP3j"><img src="https://i.ibb.co.com/QfK6YWz/Logo-FIM.png" className="w-32 h-32" alt="Logo-FIM" border="0" /></a>
+          {/* <img src="https://ibb.co.com/zr4SP3j" alt="Logo FIM" className="w-32 h-32" /> */}
         </div>
 
         {/* Deskripsi Proyek */}
