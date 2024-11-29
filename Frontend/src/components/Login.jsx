@@ -45,7 +45,7 @@ const Login = () => {
 
         {/* Logo */}
         <div className="flex justify-center mb-6">
-          <img src="../assets/Logo FIM.png" alt="Logo FIM" className="w-32 h-32" />
+          <img src="../src/assets/LogoFIM.png" alt="Logo FIM" className="w-32 h-32" />
         </div>
 
         {/* Deskripsi Proyek */}
