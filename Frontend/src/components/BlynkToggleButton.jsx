@@ -103,15 +103,15 @@ const BlynkDashboard = ({ username }) => {
 
         // Sending data to the backend API
       await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
-        temperatureBlynk
+        value : 20
       });
   
       await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
-        humidityBlynk
+        value : 30
       });
   
       await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
-        ldrBlynk
+        value : 40
       });
 
       if (tempResponseBlynk.data < 10) {
