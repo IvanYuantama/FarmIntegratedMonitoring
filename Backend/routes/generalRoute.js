@@ -4,7 +4,7 @@ const generalRoute = express.Router();
 
 // generalRoute.post("/add", generalController.add);
 generalRoute.post("/addNotif", generalController.addNotification);
-generalRoute.delete("/deleteNotif:id", generalController.deleteNotification);
+generalRoute.delete("/deleteNotif/:id", generalController.deleteNotification);
 generalRoute.get("/notifications", generalController.getAllNotifications);
 generalRoute.post("/automation", generalController.addAutomation);
 generalRoute.get("/automation", generalController.getAllAutomations);
