@@ -97,9 +97,9 @@ const BlynkDashboard = ({ username }) => {
       const humResponseBlynk = await axios.get("https://sgp1.blynk.cloud/external/api/get?token=ToiFf4bF5XdKm2MwLF6W1S_ONApla_dn&v6");
       const ldrResponseBlynk = await axios.get("https://sgp1.blynk.cloud/external/api/get?token=ToiFf4bF5XdKm2MwLF6W1S_ONApla_dn&v7");
       
-      setTemperatureBlynk(tempResponseBlynk.data);
-      setHumidityBlynk(humResponseBlynk.data);
-      setLdrBlynk(ldrResponseBlynk.data);
+      setTemperatureBlynk(tempResponseBlynk);
+      setHumidityBlynk(humResponseBlynk);
+      setLdrBlynk(ldrResponseBlynk);
 
         // Sending data to the backend API
       await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
