@@ -99,18 +99,24 @@ const BlynkDashboard = ({ username }) => {
       setTemperatureBlynk(tempResponseBlynk.data);
       setHumidityBlynk(humResponseBlynk.data);
       setLdrBlynk(ldrResponseBlynk.data);
-
-      if (tempResponseBlynk.data < 10) {
-        sendNotification("Suhu terlalu dingin", "Sensor Suhu");
-      } else if (tempResponseBlynk.data > 40) {
-        sendNotification("Suhu terlalu panas", "Sensor Suhu");
-      }
-
-      if (humResponseBlynk.data < 30) {
-        sendNotification("Tanaman kekurangan air", "Sensor Humidity");
-      }
     } catch (error) {
       console.error("Error fetching sensor data:", error);
+    }
+
+    if (tempResponseBlynk.data < 10) {
+      sendNotification("Suhu terlalu dingin", "Sensor Suhu");
+    } else if (tempResponseBlynk.data > 40) {
+      sendNotification("Suhu terlalu panas", "Sensor Suhu");
+    }
+
+    if (humResponseBlynk.data < 30) {
+      sendNotification("Tanaman kekurangan air", "Sensor Humidity");
+      try{
+         await axios.get(`https://sgp1.blynk.cloud/external/api/update?token=ToiFf4bF5XdKm2MwLF6W1S_ONApla_dn&v1=1`);
+         sendNotification("Pompa Air Dinyalakan", "Relay Pompa Air");
+      } catch (error) {
+         console.error("Error :", error);
+      }
     }
   };
 
