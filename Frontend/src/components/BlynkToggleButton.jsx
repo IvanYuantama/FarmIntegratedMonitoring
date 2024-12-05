@@ -101,6 +101,25 @@ const BlynkDashboard = ({ username }) => {
       setHumidityBlynk(humResponseBlynk.data);
       setLdrBlynk(ldrResponseBlynk.data);
 
+        // Lakukan POST jika data berhasil diambil
+      if (tempResponseBlynk?.data && humResponseBlynk?.data && ldrResponseBlynk?.data) {
+        try {
+          await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
+            value: temperatureBlynk
+          });
+    
+          await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
+            value: humidityBlynk
+          });
+    
+          await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
+            value: ldrBlynk
+          });
+        } catch (error) {
+          console.error("Error posting data to server:", error);
+        }
+      }
+
       if (tempResponseBlynk.data < 10) {
         sendNotification("Suhu terlalu dingin", "Sensor Suhu");
       } else if (tempResponseBlynk.data > 40) {
