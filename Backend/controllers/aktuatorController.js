@@ -15,10 +15,10 @@ const pool = new Pool({
 const aktuatorControllers = {
   // Add temperature sensor data
   addTemperature: async (req, res) => {
-    const { tempResponseBlynk, status = "active" } = req.body;
+    const { value, status = "active" } = req.body;
     const timestamp = new Date().toISOString();
     try {
-      await pool.query("INSERT INTO sensor_suhu (value, status, timestamp) VALUES ($1, $2, $3)", [tempResponseBlynk, status, timestamp]);
+      await pool.query("INSERT INTO sensor_suhu (value, status, timestamp) VALUES ($1, $2, $3)", [value, status, timestamp]);
       res.status(201).send("Temperature data added successfully");
     } catch (error) {
       console.error(error);
@@ -28,10 +28,10 @@ const aktuatorControllers = {
 
   // Add humidity sensor data
   addHumidity: async (req, res) => {
-    const { humResponseBlynk, status = "active" } = req.body;
+    const { value, status = "active" } = req.body;
     const timestamp = new Date().toISOString();
     try {
-      await pool.query("INSERT INTO sensor_humidity (value, status, timestamp) VALUES ($1, $2, $3)", [humResponseBlynk, status, timestamp]);
+      await pool.query("INSERT INTO sensor_humidity (value, status, timestamp) VALUES ($1, $2, $3)", [value, status, timestamp]);
       res.status(201).send("Humidity data added successfully");
     } catch (error) {
       console.error(error);
@@ -41,10 +41,10 @@ const aktuatorControllers = {
 
   // Add LDR sensor data
   addLDR: async (req, res) => {
-    const { ldrResponseBlynk, status = "active" } = req.body;
+    const { value, status = "active" } = req.body;
     const timestamp = new Date().toISOString();
     try {
-      await pool.query("INSERT INTO sensor_ldr (value, status, timestamp) VALUES ($1, $2, $3)", [ldrResponseBlynk, status, timestamp]);
+      await pool.query("INSERT INTO sensor_ldr (value, status, timestamp) VALUES ($1, $2, $3)", [value, status, timestamp]);
       res.status(201).send("LDR data added successfully");
     } catch (error) {
       console.error(error);
