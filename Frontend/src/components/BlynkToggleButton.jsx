@@ -96,6 +96,20 @@ const BlynkDashboard = ({ username }) => {
       const tempResponseBlynk = await axios.get("https://sgp1.blynk.cloud/external/api/get?token=ToiFf4bF5XdKm2MwLF6W1S_ONApla_dn&v5");
       const humResponseBlynk = await axios.get("https://sgp1.blynk.cloud/external/api/get?token=ToiFf4bF5XdKm2MwLF6W1S_ONApla_dn&v6");
       const ldrResponseBlynk = await axios.get("https://sgp1.blynk.cloud/external/api/get?token=ToiFf4bF5XdKm2MwLF6W1S_ONApla_dn&v7");
+
+      await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
+        tempResponseBlynk,
+      });
+
+      await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
+        humResponseBlynk,
+      });
+
+      await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
+        ldrResponseBlynk,
+      });
+
+      
       setTemperatureBlynk(tempResponseBlynk.data);
       setHumidityBlynk(humResponseBlynk.data);
       setLdrBlynk(ldrResponseBlynk.data);
