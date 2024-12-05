@@ -46,7 +46,7 @@ const Notifications = () => {
       });
 
       if (confirm.isConfirmed) {
-        await axios.put(`https://fimbackend.vercel.app/general/deleteNotif/${id}`);
+        await axios.delete(`https://fimbackend.vercel.app/general/deleteNotif/${id}`);
         Swal.fire("Deleted!", "Your notification has been deleted.", "success");
         fetchNotifications(); // Refresh notifications
       }
