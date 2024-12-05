@@ -101,8 +101,10 @@ const BlynkDashboard = ({ username }) => {
       setHumidityBlynk(humResponseBlynk.data);
       setLdrBlynk(ldrResponseBlynk.data);
 
+      console.log(tempResponseBlynk.data);
+
         // Lakukan POST jika data berhasil diambil
-      if (tempResponseBlynk?.data && humResponseBlynk?.data && ldrResponseBlynk?.data) {
+      if (temperatureBlynk !== null && humidityBlynk !== null && ldrBlynk !== null) {
         try {
           await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
             value: temperatureBlynk
