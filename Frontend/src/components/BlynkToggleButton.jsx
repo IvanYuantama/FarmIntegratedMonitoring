@@ -108,15 +108,15 @@ const BlynkDashboard = ({ username }) => {
     if (tempResponseBlynk?.data && humResponseBlynk?.data && ldrResponseBlynk?.data) {
       try {
         await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
-          value: tempResponseBlynk.data,
+          value: temperatureBlynk,
         });
   
         await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
-          value: humResponseBlynk.data,
+          value: humidityBlynk.data,
         });
   
         await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
-          value: ldrResponseBlynk.data,
+          value: ldrBlynk.data,
         });
       } catch (error) {
         console.error("Error posting data to server:", error);
