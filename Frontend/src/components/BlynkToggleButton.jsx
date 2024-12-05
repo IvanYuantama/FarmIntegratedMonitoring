@@ -104,24 +104,24 @@ const BlynkDashboard = ({ username }) => {
       console.error("Error fetching sensor data:", error);
     }
 
-      // Lakukan POST jika data berhasil diambil
-    if (tempResponseBlynk?.data && humResponseBlynk?.data && ldrResponseBlynk?.data) {
-      try {
-        await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
-          value: temperatureBlynk
-        });
-  
-        await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
-          value: humidityBlynk
-        });
-  
-        await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
-          value: ldrBlynk
-        });
-      } catch (error) {
-        console.error("Error posting data to server:", error);
-      }
-    }
+    //   // Lakukan POST jika data berhasil diambil
+//   if (tempResponseBlynk?.data && humResponseBlynk?.data && ldrResponseBlynk?.data) {
+//     try {
+//       await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
+//         value: temperatureBlynk
+//       });
+
+//       await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
+//         value: humidityBlynk
+//       });
+
+//       await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
+//         value: ldrBlynk
+//       });
+//     } catch (error) {
+//       console.error("Error posting data to server:", error);
+//     }
+//   }
     
     
     if (tempResponseBlynk.data < 10) {
