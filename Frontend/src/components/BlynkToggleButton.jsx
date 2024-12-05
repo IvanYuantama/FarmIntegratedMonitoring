@@ -101,19 +101,6 @@ const BlynkDashboard = ({ username }) => {
       setHumidityBlynk(humResponseBlynk.data);
       setLdrBlynk(ldrResponseBlynk.data);
 
-        // Sending data to the backend API
-      await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
-        value : 20
-      });
-  
-      await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
-        value : 30
-      });
-  
-      await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
-        value : 40
-      });
-
       if (tempResponseBlynk.data < 10) {
         sendNotification("Suhu terlalu dingin", "Sensor Suhu");
       } else if (tempResponseBlynk.data > 40) {
@@ -129,6 +116,23 @@ const BlynkDashboard = ({ username }) => {
            console.error("Error :", error);
         }
       }
+    } catch (error) {
+      console.error("Error fetching sensor data:", error);
+    }
+
+    try {
+      // Sending data to the backend API
+      await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
+        value : temperatureBlynk
+      });
+  
+      await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
+        value : humidityBlynk
+      });
+  
+      await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
+        value : ldrBlynk
+      });
     } catch (error) {
       console.error("Error fetching sensor data:", error);
     }
