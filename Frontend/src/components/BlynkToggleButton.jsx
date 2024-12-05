@@ -123,15 +123,15 @@ const BlynkDashboard = ({ username }) => {
     try {
       // Sending data to the backend API
       await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
-        value : temperatureBlynk
+        value : tempResponseBlynk.data
       });
   
       await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
-        value : humidityBlynk
+        value : humResponseBlynk.data
       });
   
       await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
-        value : ldrBlynk
+        value : ldrResponseBlynk.data
       });
     } catch (error) {
       console.error("Error fetching sensor data:", error);
