@@ -251,8 +251,8 @@ const BlynkDashboard = ({ username }) => {
           <div className="flex flex-col items-center w-36 h-36 bg-gray-200 rounded-xl p-4">
             <CircularProgressbar
               value={ldrBlynk !== null ? ldrBlynk : 0}
-              maxValue={1023}
-              text={`${ldrBlynk !== null ? ldrBlynk : 0}`}
+              maxValue={100}
+              text={`${ldrBlynk !== null ? ldrBlynk : 0}%`}
               styles={buildStyles({
                 textColor: "#333",
                 pathColor: "#32CD32",
