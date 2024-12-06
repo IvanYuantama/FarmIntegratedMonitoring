@@ -120,21 +120,35 @@ const BlynkDashboard = ({ username }) => {
       console.error("Error fetching sensor data:", error);
     }
 
-    try {
-      // Sending data to the backend API
+        // Sending data to the backend API only if the value is not null
+    if (temperatureBlynk !== null) {
       await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
-        value : 40
+        value: temperatureBlynk
+      }).then(response => {
+        console.log("Temperature data sent:", response.data);
+      }).catch(error => {
+        console.error("Error sending temperature data:", error);
       });
-  
+    }
+    
+    if (humidityBlynk !== null) {
       await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
-        value : 30
+        value: humidityBlynk
+      }).then(response => {
+        console.log("Humidity data sent:", response.data);
+      }).catch(error => {
+        console.error("Error sending humidity data:", error);
       });
-  
+    }
+    
+    if (ldrBlynk !== null) {
       await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
-        value : 20
+        value: ldrBlynk
+      }).then(response => {
+        console.log("LDR data sent:", response.data);
+      }).catch(error => {
+        console.error("Error sending LDR data:", error);
       });
-    } catch (error) {
-      console.error("Error fetching sensor data:", error);
     }
   };
 
