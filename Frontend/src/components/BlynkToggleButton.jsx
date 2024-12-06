@@ -101,6 +101,10 @@ const BlynkDashboard = ({ username }) => {
       setHumidityBlynk(humResponseBlynk.data);
       setLdrBlynk(ldrResponseBlynk.data);
 
+      console.log(temperatureBlynk);
+      console.log(humidityBlynk);
+      console.log(ldrBlynk);
+
       await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
         value : temperatureBlynk,
       });
