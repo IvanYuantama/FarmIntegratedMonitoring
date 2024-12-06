@@ -283,7 +283,7 @@ const BlynkDashboard = ({ username }) => {
                       },
                       y: {
                         min: 0,
-                        max: 50,
+                        max: 100,
                       },
                     },
                   }}
