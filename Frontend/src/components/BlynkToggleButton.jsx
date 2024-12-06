@@ -101,6 +101,18 @@ const BlynkDashboard = ({ username }) => {
       setHumidityBlynk(humResponseBlynk.data);
       setLdrBlynk(ldrResponseBlynk.data);
 
+      await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
+        value : temperatureBlynk
+      });
+  
+      await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
+        value : humidityBlynk
+      });
+  
+      await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
+        value : ldrBlynk
+      });
+
       if (tempResponseBlynk.data < 10) {
         sendNotification("Suhu terlalu dingin", "Sensor Suhu");
       } else if (tempResponseBlynk.data > 40) {
@@ -119,34 +131,6 @@ const BlynkDashboard = ({ username }) => {
     } catch (error) {
       console.error("Error fetching sensor data:", error);
     }
-
-    try {
-        // Sending temperature data
-        if (temperatureBlynk !== null) {
-          const tempResponse = await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
-            value: temperatureBlynk
-          });
-          console.log("Temperature data sent:", tempResponse.data);
-        }
-      
-        // Sending humidity data
-        if (humidityBlynk !== null) {
-          const humidityResponse = await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
-            value: humidityBlynk
-          });
-          console.log("Humidity data sent:", humidityResponse.data);
-        }
-      
-        // Sending LDR data
-        if (ldrBlynk !== null) {
-          const ldrResponse = await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
-            value: ldrBlynk
-          });
-          console.log("LDR data sent:", ldrResponse.data);
-        }
-      } catch (error) {
-        console.error("Error occurred while sending data:", error.message);
-      }
   };
 
   useEffect(() => {
