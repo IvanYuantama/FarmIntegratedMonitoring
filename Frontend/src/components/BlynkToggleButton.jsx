@@ -222,7 +222,7 @@ const BlynkDashboard = ({ username }) => {
           <div className="flex flex-col items-center w-36 h-36 bg-gray-200 rounded-xl p-4">
             <CircularProgressbar
               value={temperatureBlynk !== null ? temperatureBlynk : 0}
-              maxValue={50}
+              maxValue={100}
               text={`${temperatureBlynk !== null ? temperatureBlynk : 0}°C`}
               styles={buildStyles({
                 textColor: "#333",
