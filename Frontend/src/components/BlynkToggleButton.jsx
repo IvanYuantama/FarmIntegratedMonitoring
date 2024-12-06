@@ -120,36 +120,33 @@ const BlynkDashboard = ({ username }) => {
       console.error("Error fetching sensor data:", error);
     }
 
-        // Sending data to the backend API only if the value is not null
-    if (temperatureBlynk !== null) {
-      await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
-        value: temperatureBlynk
-      }).then(response => {
-        console.log("Temperature data sent:", response.data);
-      }).catch(error => {
-        console.error("Error sending temperature data:", error);
-      });
-    }
-    
-    if (humidityBlynk !== null) {
-      await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
-        value: humidityBlynk
-      }).then(response => {
-        console.log("Humidity data sent:", response.data);
-      }).catch(error => {
-        console.error("Error sending humidity data:", error);
-      });
-    }
-    
-    if (ldrBlynk !== null) {
-      await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
-        value: ldrBlynk
-      }).then(response => {
-        console.log("LDR data sent:", response.data);
-      }).catch(error => {
-        console.error("Error sending LDR data:", error);
-      });
-    }
+    try {
+        // Sending temperature data
+        if (temperatureBlynk !== null) {
+          const tempResponse = await axios.post("https://fimbackend.vercel.app/aktuator/temperature", {
+            value: temperatureBlynk
+          });
+          console.log("Temperature data sent:", tempResponse.data);
+        }
+      
+        // Sending humidity data
+        if (humidityBlynk !== null) {
+          const humidityResponse = await axios.post("https://fimbackend.vercel.app/aktuator/humidity", {
+            value: humidityBlynk
+          });
+          console.log("Humidity data sent:", humidityResponse.data);
+        }
+      
+        // Sending LDR data
+        if (ldrBlynk !== null) {
+          const ldrResponse = await axios.post("https://fimbackend.vercel.app/aktuator/ldr", {
+            value: ldrBlynk
+          });
+          console.log("LDR data sent:", ldrResponse.data);
+        }
+      } catch (error) {
+        console.error("Error occurred while sending data:", error.message);
+      }
   };
 
   useEffect(() => {
